@@ -1151,7 +1151,6 @@ footer {
     opacity: 0;
     visibility: hidden;
 }
-
 .back-to-top.active {
     opacity: 1;
     visibility: visible;
