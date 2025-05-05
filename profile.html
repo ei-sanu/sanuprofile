@@ -37,89 +37,91 @@
         </div>
       </div>
     </div>
-    <!-- Wrap forms in a container for rotation -->
+    <!-- Replace the existing forms-container div -->
     <div class="forms-container" id="formsContainer">
-      <div id="register" style="display:none;">
-        <h2>Register</h2>
-        <div class="input-group">
-          <i class="fas fa-user-plus icon"></i>
-          <input id="regEmail" placeholder="Email" type="email" required>
-        </div>
-        <div class="input-group">
-          <i class="fas fa-user icon"></i>
-          <input id="regName" placeholder="Name" required>
-        </div>
-        <div class="input-group">
-          <i class="fas fa-phone icon"></i>
-          <input id="regPhone" placeholder="Phone" required>
-        </div>
-        <div class="input-group">
-          <i class="fas fa-lock icon"></i>
-          <input id="regPass" type="password" placeholder="Password" required>
-        </div>
-        <div id="registerError" class="register-error"></div>
+        <!-- Login Form -->
+        <form id="login" class="auth-form active">
+            <h2>Login</h2>
+            <div class="input-group">
+                <i class="fas fa-user-circle icon"></i>
+                <input id="loginEmail" placeholder="Email" type="email" required>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock icon"></i>
+                <input id="loginPass" type="password" placeholder="Password" required>
+            </div>
+            <div id="loginError" class="error-message"></div>
 
-        <div class="terms-container">
-          <label class="terms-checkbox">
-            <input type="checkbox" id="termsCheck" onchange="toggleCaptcha()">
-            <span class="checkmark"></span>
-            I agree to the <a href="#" class="terms-link" onclick="showTerms()">Terms and Conditions</a>
-          </label>
-        </div>
+            <div class="terms-container">
+              <label class="terms-checkbox">
+                <input type="checkbox" id="loginTermsCheck" onchange="toggleLoginCaptcha()">
+                <span class="checkmark"></span>
+                I agree to the <a href="#" class="terms-link" onclick="showTerms()">Terms and Conditions</a>
+              </label>
+            </div>
 
-        <div id="captchaSection" style="display: none;">
-          <div class="captcha-container">
-            <div class="captcha-code" id="captchaCode"></div>
-            <button type="button" class="refresh-captcha" onclick="generateCaptcha()">
-              <i class="fas fa-sync-alt"></i>
-            </button>
-          </div>
-          <div class="input-group">
-            <i class="fas fa-shield-alt icon"></i>
-            <input type="number" id="captchaInput" placeholder="Enter Captcha Code" required>
-          </div>
-        </div>
+            <div id="loginCaptchaSection" style="display: none;">
+              <div class="captcha-container">
+                <div class="captcha-code" id="loginCaptchaCode"></div>
+                <button type="button" class="refresh-captcha" onclick="generateLoginCaptcha()">
+                  <i class="fas fa-sync-alt"></i>
+                </button>
+              </div>
+              <div class="input-group">
+                <i class="fas fa-shield-alt icon"></i>
+                <input type="number" id="loginCaptchaInput" placeholder="Enter Captcha Code" required>
+              </div>
+            </div>
 
-        <button onclick="validateAndRegister()" id="registerBtn" disabled>Register</button>
-        <p class="auth-switch">Already have an account? <a href="#" onclick="toggleAuth('login')">Login here</a></p>
-      </div>
+            <button onclick="validateAndLogin()" id="loginBtn" disabled>Login</button>
+            <p class="auth-switch">Don't have an account? <a href="#" onclick="toggleAuth('register')">Register here</a></p>
+        </form>
 
-      <div id="login">
-        <h2>Login</h2>
-        <div class="input-group">
-          <i class="fas fa-user-circle icon"></i>
-          <input id="loginEmail" placeholder="Email" type="email" required>
-        </div>
-        <div class="input-group">
-          <i class="fas fa-lock icon"></i>
-          <input id="loginPass" type="password" placeholder="Password" required>
-        </div>
-        <div id="loginError" class="error-message"></div>
+        <!-- Register Form -->
+        <form id="register" class="auth-form">
+            <h2>Register</h2>
+            <div class="input-group">
+                <i class="fas fa-user-plus icon"></i>
+                <input id="regEmail" placeholder="Email" type="email" required>
+            </div>
+            <div class="input-group">
+              <i class="fas fa-user icon"></i>
+              <input id="regName" placeholder="Name" required>
+            </div>
+            <div class="input-group">
+              <i class="fas fa-phone icon"></i>
+              <input id="regPhone" placeholder="Phone" required>
+            </div>
+            <div class="input-group">
+              <i class="fas fa-lock icon"></i>
+              <input id="regPass" type="password" placeholder="Password" required>
+            </div>
+            <div id="registerError" class="register-error"></div>
 
-        <div class="terms-container">
-          <label class="terms-checkbox">
-            <input type="checkbox" id="loginTermsCheck" onchange="toggleLoginCaptcha()">
-            <span class="checkmark"></span>
-            I agree to the <a href="#" class="terms-link" onclick="showTerms()">Terms and Conditions</a>
-          </label>
-        </div>
+            <div class="terms-container">
+              <label class="terms-checkbox">
+                <input type="checkbox" id="termsCheck" onchange="toggleCaptcha()">
+                <span class="checkmark"></span>
+                I agree to the <a href="#" class="terms-link" onclick="showTerms()">Terms and Conditions</a>
+              </label>
+            </div>
 
-        <div id="loginCaptchaSection" style="display: none;">
-          <div class="captcha-container">
-            <div class="captcha-code" id="loginCaptchaCode"></div>
-            <button type="button" class="refresh-captcha" onclick="generateLoginCaptcha()">
-              <i class="fas fa-sync-alt"></i>
-            </button>
-          </div>
-          <div class="input-group">
-            <i class="fas fa-shield-alt icon"></i>
-            <input type="number" id="loginCaptchaInput" placeholder="Enter Captcha Code" required>
-          </div>
-        </div>
+            <div id="captchaSection" style="display: none;">
+              <div class="captcha-container">
+                <div class="captcha-code" id="captchaCode"></div>
+                <button type="button" class="refresh-captcha" onclick="generateCaptcha()">
+                  <i class="fas fa-sync-alt"></i>
+                </button>
+              </div>
+              <div class="input-group">
+                <i class="fas fa-shield-alt icon"></i>
+                <input type="number" id="captchaInput" placeholder="Enter Captcha Code" required>
+              </div>
+            </div>
 
-        <button onclick="validateAndLogin()" id="loginBtn" disabled>Login</button>
-        <p class="auth-switch">Don't have an account? <a href="#" onclick="toggleAuth('register')">Register here</a></p>
-      </div>
+            <button onclick="validateAndRegister()" id="registerBtn" disabled>Register</button>
+            <p class="auth-switch">Already have an account? <a href="#" onclick="toggleAuth('login')">Login here</a></p>
+        </form>
     </div>
   </div>
 
