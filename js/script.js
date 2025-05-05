@@ -1,3 +1,33 @@
+document.addEventListener('DOMContentLoaded', () => {
+    const loader = document.querySelector('.page-loader');
+
+    // Simulate loading time (remove this in production)
+    setTimeout(() => {
+        loader.classList.add('fade-out');
+        // Enable scrolling
+        document.body.style.overflow = 'auto';
+
+        // Remove loader from DOM after animation
+        setTimeout(() => {
+            loader.remove();
+        }, 500);
+    }, 2000); // Adjust time as needed
+});
+
+window.addEventListener('load', () => {
+    const loader = document.querySelector('.page-loader');
+    if (loader) {
+        loader.classList.add('fade-out');
+        // Enable scrolling
+        document.body.style.overflow = 'auto';
+
+        // Remove loader from DOM after animation
+        setTimeout(() => {
+            loader.remove();
+        }, 500);
+    }
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     // Matrix Cyberpunk Background Effect
     const matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$#@%&*!?><~';
@@ -209,4 +239,149 @@ document.addEventListener('DOMContentLoaded', function () {
             document.querySelector('.overlay').classList.remove('active');
         }
     });
+
+    // Newsletter Form Handling
+    const newsletterForm = document.getElementById('newsletterForm');
+    const emailInput = document.getElementById('newsletterEmail');
+    const responseMsg = document.getElementById('newsletterResponse');
+    const submitBtn = document.querySelector('.newsletter-btn');
+
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const form = this;
+            const emailInput = form.querySelector('.newsletter-input');
+            const submitBtn = form.querySelector('.newsletter-btn');
+            const btnText = submitBtn.querySelector('.btn-text');
+            const btnIcon = submitBtn.querySelector('.btn-icon');
+
+            // Show loading state
+            submitBtn.classList.add('loading');
+            btnText.textContent = 'Subscribing...';
+            btnIcon.style.display = 'none';
+
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbyL4Gt01t4ZhjCW27vdq1pQdN9HNl97NIH3PPWyxU61UrC3Qf3GiOjABzKbK5GIjVhh/exec';
+
+            try {
+                const response = await fetch(scriptURL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `email=${encodeURIComponent(emailInput.value)}`
+                });
+
+                if (response.ok) {
+                    // Show success state
+                    submitBtn.classList.remove('loading');
+                    submitBtn.classList.add('success');
+                    btnText.textContent = 'Subscribed!';
+                    emailInput.value = '';
+
+                    // Show success checkmark animation
+                    showSuccessAnimation();
+
+                    // Reset button after delay
+                    setTimeout(() => {
+                        submitBtn.classList.remove('success');
+                        btnText.textContent = 'Subscribe';
+                        btnIcon.style.display = 'inline-block';
+                    }, 3000);
+                } else {
+                    throw new Error('Submission failed');
+                }
+            } catch (error) {
+                // Show error state
+                submitBtn.classList.remove('loading');
+                submitBtn.classList.add('error');
+                btnText.textContent = 'Error! Try again';
+
+                setTimeout(() => {
+                    submitBtn.classList.remove('error');
+                    btnText.textContent = 'Subscribe';
+                    btnIcon.style.display = 'inline-block';
+                }, 3000);
+            }
+        });
+
+        function showSuccessAnimation() {
+            const successAnim = document.createElement('div');
+            successAnim.className = 'success-animation';
+            document.body.appendChild(successAnim);
+
+            setTimeout(() => {
+                successAnim.remove();
+            }, 2000);
+        }
+    }
+
+    // Profile Modal Functionality
+    function openProfileModal() {
+        const modal = document.getElementById('profileModal');
+        const frame = document.getElementById('profileFrame');
+
+        // Load the profile page
+        frame.src = 'profile.html';
+
+        // Show the modal
+        modal.style.display = 'block';
+
+        // Prevent body scrolling
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProfileModal() {
+        const modal = document.getElementById('profileModal');
+        const frame = document.getElementById('profileFrame');
+
+        // Clear the iframe src
+        frame.src = '';
+
+        // Hide the modal
+        modal.style.display = 'none';
+
+        // Restore body scrolling
+        document.body.style.overflow = 'auto';
+    }
+
+    // Close modal when clicking outside
+    const profileModal = document.getElementById('profileModal');
+    profileModal.addEventListener('click', (e) => {
+        if (e.target === profileModal) {
+            closeProfileModal();
+        }
+    });
+
+    // Add this to handle messages from the iframe
+    window.addEventListener('message', function (event) {
+        if (event.data === 'authSuccess') {
+            // Close the modal after successful auth
+            closeProfileModal();
+            // Optionally refresh the page or update UI
+            location.reload();
+        }
+    });
+
+    // Login Form Handling
+    function handleLogin(event) {
+        event.preventDefault();
+
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        // Here you would typically validate against your backend
+        // For demo purposes, we'll just do a simple check
+        if (email && password) {
+            // Show success message
+            document.querySelector('.success-checkmark').style.display = 'block';
+
+            // Wait for 1 second before redirecting
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 1000);
+        } else {
+            alert('Please fill in all fields');
+        }
+    }
 });

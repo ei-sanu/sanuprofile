@@ -10,11 +10,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/x-icon" href="images/Sanu.jpg">
 
 </head>
 <body>
+    <!-- Add Loader -->
+    <div class="page-loader">
+        <div class="loader-content">
+            <div class="cyber-spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+            <div class="loader-text">
+                <span class="text">Initializing</span>
+                <span class="dots">...</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+        </div>
+    </div>
+
     <div class="scanner-line"></div>
 
     <header>
@@ -22,10 +40,15 @@
             <a href="#" class="logo">
                 <span>S</span>anu<div class="hacker">Hacker</div>
             </a>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+            <!-- <div class="header-right">
+                <a href="profile.html" class="profile-icon">
+                    <i class="fas fa-user-circle"></i>
+                </a> -->
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
         </div>
     </header>
@@ -37,7 +60,7 @@
             <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
             <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
             <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-            <li class="nav-item"><a href="https://somesh.authui.site/" class="nav-link">SignUp</a></li>
+            <li class="nav-item"><a href="profile.html" class="nav-link">SignUp</a></li>
         </ul>
     </nav>
 
@@ -229,6 +252,25 @@
         </div>
     </section>
 
+    <section class="newsletter-section">
+        <div class="container">
+            <div class="newsletter-content">
+                <h2 class="newsletter-title">Subscribe to My Newsletter</h2>
+                <p class="newsletter-desc">Stay updated with the latest in cybersecurity trends and tips</p>
+                <form class="newsletter-form" id="newsletterForm" onsubmit="handleNewsletterSubmit(event)">
+                    <div class="form-group">
+                        <input type="email" name="email" class="newsletter-input" placeholder="Enter your email" required>
+                        <button type="submit" class="newsletter-btn">
+                            <span class="btn-text">Subscribe</span>
+                            <i class="fas fa-arrow-right btn-icon"></i>
+                        </button>
+                    </div>
+                    <div class="newsletter-message"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="section contact">
         <div class="container">
             <h2 class="section-title">Contact</h2>
@@ -341,7 +383,7 @@
         <div class="check-icon"></div>
     </div>
 
-    <script src="script.js">
+    <script src="js/script.js">
     </script>
 </body>
 </html>
