@@ -1117,3 +1117,213 @@ button:hover::before {
     height: 4rem;
     width: 100%;
 }
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+
+    /* Container adjustments */
+    .auth-container {
+        padding: 1rem;
+        margin: 0;
+        min-height: 100vh;
+    }
+
+    /* Header adjustments */
+    .auth-header {
+        padding: 1rem 0;
+    }
+
+    .auth-logo {
+        margin-bottom: 1.5rem;
+    }
+
+    .logo-img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .logo-text {
+        font-size: 1.2rem;
+    }
+
+    /* Toggle container adjustments */
+    .toggle-container {
+        margin-top: 1.5rem;
+    }
+
+    .toggle-text {
+        width: 160px;
+    }
+
+    .toggle-text .text {
+        font-size: 1rem;
+    }
+
+    /* Form adjustments */
+    .forms-container {
+        padding: 1rem;
+    }
+
+    .input-group {
+        margin-bottom: 1rem;
+    }
+
+    .input-group input {
+        padding: 0.8rem 1rem 0.8rem 2.5rem;
+        font-size: 0.9rem;
+    }
+
+    .input-group .icon {
+        font-size: 1rem;
+        left: 0.8rem;
+    }
+
+    /* Button adjustments */
+    button {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    /* Captcha adjustments */
+    .captcha-container {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .captcha-code {
+        width: 100%;
+        font-size: 1.2rem;
+    }
+
+    /* Terms modal adjustments */
+    .modal-content {
+        width: 90%;
+        max-height: 80vh;
+        padding: 1rem;
+        margin: 10vh auto;
+    }
+
+    /* Footer adjustments */
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+        padding: 1.5rem;
+    }
+
+    .footer-brand,
+    .footer-links,
+    .footer-social {
+        width: 100%;
+    }
+
+    .brand-logo {
+        justify-content: center;
+        margin-bottom: 1rem;
+    }
+
+    .social-links {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .footer-links ul {
+        text-align: center;
+    }
+
+    .footer-bottom {
+        padding: 1rem;
+    }
+
+    .footer-links-bottom {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .separator {
+        display: none;
+    }
+
+    /* Loading spinner adjustments */
+    .loading-spinner {
+        padding: 1rem;
+    }
+
+    .spinner {
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Success/Error modal adjustments */
+    .success-modal,
+    .error-modal {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    /* Auth switch text */
+    .auth-switch {
+        font-size: 0.9rem;
+        margin-top: 1rem;
+    }
+
+    /* Terms checkbox */
+    .terms-container {
+        margin: 1rem 0;
+    }
+
+    .terms-checkbox {
+        font-size: 0.85rem;
+    }
+}
+
+/* Small phone adjustments */
+@media screen and (max-width: 375px) {
+    .logo-text {
+        font-size: 1rem;
+    }
+
+    .toggle-text {
+        width: 140px;
+    }
+
+    .toggle-text .text {
+        font-size: 0.9rem;
+    }
+
+    .input-group input {
+        font-size: 0.85rem;
+    }
+
+    .footer-links-bottom a {
+        font-size: 0.8rem;
+    }
+}
+
+/* Landscape mode adjustments */
+@media screen and (max-height: 600px) and (orientation: landscape) {
+    .auth-container {
+        padding: 0.5rem;
+    }
+
+    .auth-header {
+        padding: 0.5rem 0;
+    }
+
+    .logo-img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .forms-container {
+        padding: 0.5rem;
+    }
+
+    .input-group {
+        margin-bottom: 0.5rem;
+    }
+
+    .modal-content {
+        max-height: 90vh;
+    }
+}
