@@ -151,42 +151,54 @@ document.addEventListener('DOMContentLoaded', function () {
     // Form submission
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
-        contactForm.addEventListener('submit', async (e) => {
+        contactForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
-            const submitBtn = contactForm.querySelector('.submit-btn');
-            submitBtn.classList.add('loading');
-
-            const formData = new FormData(contactForm);
+            const form = this;
+            const submitBtn = form.querySelector('.submit-btn');
+            const btnText = submitBtn.querySelector('.btn-text');
 
             try {
-                const response = await fetch(contactForm.action, {
+                // Show loading state
+                submitBtn.disabled = true;
+                btnText.textContent = 'Sending...';
+
+                const formData = new FormData(form);
+                const response = await fetch(form.action, {
                     method: 'POST',
                     body: formData
                 });
 
-                const data = await response.json();
+                const result = await response.json();
 
-                if (data.success) {
-                    submitBtn.classList.remove('loading');
-                    contactForm.reset();
+                if (result.success) {
+                    // Show success state
+                    btnText.textContent = 'Submitted!';
+                    submitBtn.classList.add('success');
 
-                    // Show success checkmark
-                    const checkmark = document.querySelector('.success-checkmark');
-                    checkmark.classList.add('show');
+                    // Reset form
+                    form.reset();
 
-                    // Remove checkmark after animation
+                    // Reset button state after 3 seconds
                     setTimeout(() => {
-                        checkmark.classList.remove('show');
-                    }, 2500);
+                        btnText.textContent = 'Send Message';
+                        submitBtn.classList.remove('success');
+                        submitBtn.disabled = false;
+                    }, 3000);
                 } else {
-                    submitBtn.classList.remove('loading');
-                    alert('Oops! Something went wrong. Please try again.');
+                    throw new Error(result.message || 'Something went wrong!');
                 }
             } catch (error) {
                 console.error('Error:', error);
-                submitBtn.classList.remove('loading');
-                alert('An error occurred. Please try again later.');
+                btnText.textContent = 'Error! Try Again';
+                submitBtn.classList.add('error');
+
+                // Reset error state after 3 seconds
+                setTimeout(() => {
+                    btnText.textContent = 'Send Message';
+                    submitBtn.classList.remove('error');
+                    submitBtn.disabled = false;
+                }, 3000);
             }
         });
     }
