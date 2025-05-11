@@ -990,6 +990,78 @@ header {
     font-size: 1rem;
 }
 
+.project-card.upcoming {
+    position: relative;
+    border: 1px solid rgba(0, 255, 213, 0.3);
+    overflow: hidden;
+}
+
+.project-status {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+}
+
+.status-badge {
+    background: rgba(0, 255, 213, 0.1);
+    color: var(--neon-blue);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--neon-blue);
+    border-radius: 4px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    animation: pulse 2s infinite;
+}
+
+.project-features {
+    display: flex;
+    gap: 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.feature-item i {
+    color: var(--neon-blue);
+}
+
+.progress-section {
+    margin-top: 2rem;
+    text-align: center;
+    padding: 0 1rem;
+}
+
+.progress-bar {
+    max-width: 300px;
+    height: 4px;
+    background: rgba(0, 255, 213, 0.1);
+    border-radius: 2px;
+    margin: 0 auto 0.5rem;
+    overflow: hidden;
+}
+
+.progress {
+    height: 100%;
+    background: var(--neon-blue);
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--neon-blue);
+    transition: width 0.3s ease;
+}
+
+.progress-text {
+    color: var(--neon-blue);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.9rem;
+    display: block;
+    text-align: center;
+}
+
 /* Contact Section */
 .contact {
     position: relative;
