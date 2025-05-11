@@ -1907,3 +1907,249 @@ footer {
         font-size: 2rem;
     }
 }
+
+/* Education Section */
+.education-content {
+    display: grid;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+.university-info {
+    background: rgba(32, 34, 37, 0.9);
+    border: 1px solid rgba(0, 255, 213, 0.2);
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.edu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(0, 255, 213, 0.2);
+}
+
+.university-logo {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid var(--neon-blue);
+    padding: 0.5rem;
+}
+
+.logo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.edu-details {
+    position: relative;
+}
+
+.university-name {
+    color: var(--neon-blue);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.year {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Share Tech Mono', monospace;
+    margin-bottom: 1.5rem;
+    display: block;
+}
+
+.university-desc {
+    margin: 1.5rem 0;
+}
+
+.university-highlights {
+    list-style: none;
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+}
+
+.university-highlights li {
+    position: relative;
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+}
+
+.university-highlights li::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--neon-blue);
+}
+
+.university-image-container {
+    position: relative;
+    padding: 1rem;
+    max-width: 500px;
+    /* Add maximum width */
+    margin: 0 auto;
+    /* Center the container */
+}
+
+.image-border {
+    position: relative;
+    border: 2px solid var(--neon-blue);
+    padding: 0.5rem;
+    /* Reduced padding */
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 16/9;
+    /* Maintain aspect ratio */
+}
+
+.university-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* Maintain aspect ratio while filling container */
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .university-image-container {
+        max-width: 100%;
+        padding: 0.5rem;
+    }
+
+    .image-border {
+        padding: 0.25rem;
+    }
+}
+
+.university-image-container {
+    position: relative;
+    padding: 1rem;
+}
+
+.image-border {
+    position: relative;
+    border: 2px solid var(--neon-blue);
+    padding: 1rem;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.university-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+.border-effects .corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--neon-blue);
+    animation: borderGlow 2s infinite;
+}
+
+.top-left {
+    top: 0;
+    left: 0;
+    border-right: 0;
+    border-bottom: 0;
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+    border-left: 0;
+    border-bottom: 0;
+}
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+    border-right: 0;
+    border-top: 0;
+}
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
+    border-left: 0;
+    border-top: 0;
+}
+
+@keyframes borderGlow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 5px var(--neon-blue);
+    }
+
+    50% {
+        box-shadow: 0 0 20px var(--neon-blue);
+    }
+}
+
+.admission-cta {
+    margin-top: 2rem;
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(0, 255, 213, 0.2);
+}
+
+.lpunest-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    background: transparent;
+    border: 2px solid var(--neon-blue);
+    color: var(--neon-blue);
+    text-decoration: none;
+    font-family: 'Orbitron', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.lpunest-btn:hover {
+    background: var(--neon-blue);
+    color: var(--dark-bg);
+    box-shadow: 0 0 20px rgba(0, 255, 213, 0.4);
+}
+
+.admission-note {
+    margin-top: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.admission-note a {
+    color: var(--neon-blue);
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .education-content {
+        grid-template-columns: 1fr;
+    }
+
+    .edu-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .university-logo {
+        margin: 0 auto;
+    }
+
+    .admission-cta {
+        margin-top: 1.5rem;
+    }
+}
