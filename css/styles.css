@@ -2225,3 +2225,163 @@ footer {
         margin-top: 1.5rem;
     }
 }
+
+/* Mobile Footer Styles */
+@media screen and (max-width: 428px) {
+
+    /* iPhone 12/13 Pro Max width */
+    .footer-content {
+        padding: 2rem 1rem;
+        gap: 1.5rem;
+    }
+
+    .footer-logo {
+        font-size: 1.5rem;
+    }
+
+    .social-links {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .social-link {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        margin: 0 auto;
+    }
+
+    .footer-links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+        text-align: center;
+        width: 100%;
+    }
+
+    .footer-link {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+        width: 100%;
+        border: 1px solid rgba(0, 255, 213, 0.2);
+        border-radius: 4px;
+    }
+
+    .footer-link:hover {
+        background: rgba(0, 255, 213, 0.1);
+    }
+
+    .copyright {
+        font-size: 0.8rem;
+        text-align: center;
+        width: 100%;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(0, 255, 213, 0.2);
+    }
+}
+
+/* Small iPhone Styles */
+@media screen and (max-width: 375px) {
+    .footer-content {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .social-link {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+
+    .footer-link {
+        font-size: 0.8rem;
+        padding: 0.4rem;
+    }
+}
+
+/* Hero Section Mobile Responsiveness */
+@media screen and (max-width: 768px) {
+    .hero {
+        padding: 6rem 1rem 2rem;
+        min-height: 80vh;
+    }
+
+    .hero-content {
+        padding: 1rem;
+        max-width: 100%;
+    }
+
+    .hero-glitch {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+    }
+
+    .badge-container {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .cyber-badge {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.8rem;
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+        padding: 0.7rem 1.4rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Even smaller screens */
+@media screen and (max-width: 375px) {
+    .hero-glitch {
+        font-size: 1.8rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.8rem;
+    }
+
+    .cyber-badge {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.6rem;
+    }
+
+    .typewriter {
+        white-space: pre-wrap;
+        border-right: none;
+    }
+}
+
+/* Fix glitch effect on mobile */
+@media screen and (max-width: 768px) {
+
+    .hero-glitch::before,
+    .hero-glitch::after {
+        display: none;
+    }
+
+    .hero-glitch {
+        text-shadow: 2px 2px 8px var(--neon-blue);
+    }
+}
+
+/* Matrix characters adjustment for mobile */
+@media screen and (max-width: 768px) {
+    .matrix-characters {
+        opacity: 0.15;
+    }
+}
