@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authentication</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="nav-logo">SOMESH.SOCIAL</a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="index.html#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="container">
+            <form id="registerForm">
+                <h2><i class="fas fa-user-plus"></i> Register</h2>
+                <div class="form-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="regEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="regPassword" required placeholder="Enter your password">
+                </div>
+                <div class="terms-checkbox">
+                    <input type="checkbox" id="regTermsCheckbox" required>
+                    <label for="regTermsCheckbox">
+                        I agree to the <span class="terms-link" onclick="showTerms()">Terms & Conditions</span>
+                    </label>
+                </div>
+                <button type="submit" id="registerBtn" disabled>Register <i class="fas fa-arrow-right"></i></button>
+            </form>
+
+            <form id="loginForm">
+                <h2><i class="fas fa-sign-in-alt"></i> Login</h2>
+                <div class="form-group">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="loginEmail" required placeholder="Enter your email">
+                </div>
+                <div class="form-group">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="loginPassword" required placeholder="Enter your password">
+                </div>
+                <div class="terms-checkbox">
+                    <input type="checkbox" id="loginTermsCheckbox" required>
+                    <label for="loginTermsCheckbox">
+                        I agree to the <span class="terms-link" onclick="showTerms()">Terms & Conditions</span>
+                    </label>
+                </div>
+                <button type="submit" id="loginBtn" disabled>Login <i class="fas fa-arrow-right"></i></button>
+            </form>
+
+            <div class="toggle-form">
+                <button type="button" class="toggle-btn" onclick="toggleForms()">
+                    Switch to Register
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="termsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-gavel"></i> Terms & Conditions</h2>
+            </div>
+            <div class="terms-text">
+                <h3>Copyright Notice</h3>
+                <p>All projects, code, and content displayed on this website are protected under Indian copyright law.
+                   Unauthorized copying, modification, or distribution of any content from this website is strictly prohibited.</p>
+
+                <h3>Legal Implications</h3>
+                <p>Any violation of these terms may result in legal action under the Indian Copyright Act, 1957,
+                   and Information Technology Act, 2000. Violations may lead to:</p>
+                <ul>
+                    <li>Civil and criminal penalties</li>
+                    <li>Monetary damages up to ₹2,00,000</li>
+                    <li>Imprisonment up to 3 years</li>
+                </ul>
+                <div class="modal-footer">
+                    <button class="close-btn" onclick="closeModal('termsModal')">
+                        Close <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="privacyModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fas fa-shield-alt"></i> Privacy Policy</h2>
+                <button class="close-btn" onclick="closeModal('privacyModal')" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="privacy-text">
+                <h3>Data Collection</h3>
+                <p>We collect and process your information in accordance with Indian data protection laws.</p>
+                <ul>
+                    <li>Email address for authentication</li>
+                    <li>Usage analytics for service improvement</li>
+                    <li>Security logs for protection</li>
+                </ul>
+
+                <h3>Data Protection</h3>
+                <p>Your data is protected under the Information Technology Rules, 2011, and related Indian laws.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-text">
+                © 2025 somesh.social. All rights reserved.
+            </div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/somesh-biswal-b73576320?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ei-sanu" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://x.com/SomeshR82674271" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+<script type="module">
+    // Import the required Firebase functions
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword }
+    from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+
+    // Your Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyDmOuGGVl2OzHNjHOvxDj1Y1WSih97Ctbk",
+        authDomain: "portfolio-b65f2.firebaseapp.com",
+        projectId: "portfolio-b65f2",
+        storageBucket: "portfolio-b65f2.firebasestorage.app",
+        messagingSenderId: "563902113197",
+        appId: "1:563902113197:web:17b1d5d683d83f4122ed24",
+        measurementId: "G-PCVW165V3F"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+
+    // Make toggleForms function globally available
+    window.toggleForms = function() {
+        const loginForm = document.getElementById('loginForm');
+        const registerForm = document.getElementById('registerForm');
+        const toggleBtn = document.querySelector('.toggle-btn');
+
+        window.isLoginForm = !window.isLoginForm;
+        loginForm.style.display = window.isLoginForm ? 'block' : 'none';
+        registerForm.style.display = window.isLoginForm ? 'none' : 'block';
+        toggleBtn.textContent = window.isLoginForm ? 'Switch to Register' : 'Switch to Login';
+    }
+
+    // Initialize the form state
+    window.isLoginForm = true; // Changed to true
+    document.getElementById('loginForm').style.display = 'block'; // Show login
+    document.getElementById('registerForm').style.display = 'none'; // Hide register
+
+    // Update the toggle button text initially
+    document.querySelector('.toggle-btn').textContent = 'Switch to Register';
+
+    // Update the checkbox event listeners
+    document.getElementById('regTermsCheckbox').addEventListener('change', function() {
+        const registerBtn = document.getElementById('registerBtn');
+        registerBtn.disabled = !this.checked;
+        if (this.checked) {
+            registerBtn.classList.add('active');
+        } else {
+            registerBtn.classList.remove('active');
+        }
+    });
+
+    document.getElementById('loginTermsCheckbox').addEventListener('change', function() {
+        const loginBtn = document.getElementById('loginBtn');
+        loginBtn.disabled = !this.checked;
+        if (this.checked) {
+            loginBtn.classList.add('active');
+        } else {
+            loginBtn.classList.remove('active');
+        }
+    });
+
+    // Registration handler
+    registerForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('regEmail').value;
+        const password = document.getElementById('regPassword').value;
+
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log('User registered successfully:', user);
+                // Animated success alert
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Registration Successful!',
+                    text: 'Welcome to our portfolio platform!',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    background: '#1a1a1a',
+                    color: '#fff',
+                    customClass: {
+                        popup: 'animated fadeInDown'
+                    }
+                }).then(() => {
+                    window.location.href = 'projects.html';
+                });
+            })
+            .catch((error) => {
+                console.error('Registration error:', error);
+                // Animated error alert
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Registration Failed',
+                    text: error.message,
+                    background: '#1a1a1a',
+                    color: '#fff',
+                    customClass: {
+                        popup: 'animated shake'
+                    }
+                });
+            });
+    });
+
+    // Login handler
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value;
+        const password = document.getElementById('loginPassword').value;
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                const user = userCredential.user;
+                console.log('User logged in successfully:', user);
+                // Animated success alert
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login Successful!',
+                    text: 'Welcome back!',
+                    showConfirmButton: false,
+                    timer: 1500,
+                    background: '#1a1a1a',
+                    color: '#fff',
+                    customClass: {
+                        popup: 'animated fadeInDown'
+                    }
+                }).then(() => {
+                    window.location.href = 'projects.html';
+                });
+            })
+            .catch((error) => {
+                console.error('Login error:', error);
+                // Animated error alert
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed',
+                    text: error.message,
+                    background: '#1a1a1a',
+                    color: '#fff',
+                    customClass: {
+                        popup: 'animated shake'
+                    }
+                });
+            });
+    });
+</script>
+
+<script>
+// Add this after your existing scripts
+function showModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    // Focus trap for accessibility
+    const focusableElements = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const firstFocusableElement = focusableElements[0];
+    firstFocusableElement.focus();
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        const openModal = document.querySelector('.modal[style*="display: block"]');
+        if (openModal) {
+            closeModal(openModal.id);
+        }
+    }
+});
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        closeModal(event.target.id);
+    }
+}
+
+// Update your terms link onclick handlers
+document.querySelectorAll('.terms-link').forEach(link => {
+    link.onclick = function() {
+        showModal('termsModal');
+    }
+});
+
+// Add privacy policy link handler
+document.querySelectorAll('.privacy-link').forEach(link => {
+    link.onclick = function() {
+        showModal('privacyModal');
+    }
+});
+</script>
+</body>
+</html>

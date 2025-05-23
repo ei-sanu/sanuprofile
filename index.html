@@ -12,8 +12,30 @@
         rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="icon" type="image/x-icon" href="images/Sanu.jpg">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2507559388753222"
-    crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@5/dark.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2507559388753222"
+        crossorigin="anonymous"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+        import { getAuth } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmOuGGVl2OzHNjHOvxDj1Y1WSih97Ctbk",
+            authDomain: "portfolio-b65f2.firebaseapp.com",
+            projectId: "portfolio-b65f2",
+            storageBucket: "portfolio-b65f2.firebasestorage.app",
+            messagingSenderId: "563902113197",
+            appId: "1:563902113197:web:17b1d5d683d83f4122ed24"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth();
+
+        // Make auth globally available
+        window.auth = auth;
+    </script>
 </head>
 <body>
     <!-- Add Loader -->
@@ -61,7 +83,7 @@
             <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
             <li class="nav-item"><a href="#services" class="nav-link">Services</a></li>
             <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
-            <li class="nav-item"><a href="profile.html" class="nav-link">SignUp</a></li>
+            <!-- <li class="nav-item"><a href="#" class="nav-link">SignUp</a></li> -->
             <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
         </ul>
     </nav>
@@ -229,86 +251,54 @@
 
     <section id="projects" class="section projects">
         <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/project1.png" alt="Project 1" />
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">DHARMA</h3>
-                        <p class="project-desc">Web Security Awareness' provides interactive learning on common web vulnerabilities, including SQL Injection and
-                        Cross-Site Scripting (XSS). It offers hands-on examples and visualizations to demonstrate how these attacks work and
-                        their potential impacts.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Security</span>
-                            <span class="project-tag">Vulnerabilities</span>
-                            <span class="project-tag">Awareness</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ei-sanu/dharma" class="project-link"><i class="fas fa-code"></i> Source Code</a>
-                            <a href="https://dharma-five.vercel.app/" class="project-link"><i class="fas fa-external-link-alt"></i> Live Server</a>
-                        </div>
+            <h2 class="section-title">Exclusive Projects</h2>
+            <div class="projects-content">
+                <div class="projects-text">
+                    <h3 class="cyber-heading">Check  Out the Most Exclusive Projects</h3>
+                    <p class="projects-desc">Discover a collection of powerful cybersecurity tools and Full Stack Web-Apps projects that can enhance your digital security:</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-shield-alt"></i>Net Works</li>
+                        <li><i class="fas fa-lock"></i> Encryption utilities</li>
+                        <li><i class="fas fa-bug"></i>Front-End Web Dev</li>
+                        <li><i class="fas fa-code"></i> Secure coding templates</li>
+                    </ul>
+                    <div class="cta-container">
+                        <a href="auth.html" class="cta-button">
+                            <span class="button-text">View Projects</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <p class="cta-note">* Sign in required to access projects</p>
                     </div>
                 </div>
-
-                <div class="project-card">
-                    <div class="project-image">
-                        <img src="images/project2.png" alt="Project 2" />
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Tech Forge</h3>
-                        <p class="project-desc">I served as the Tech Head and Lead Developer for TechForge 2025, a prestigious national-level hackathon.
-                        I single-handedly developed the official event website: techforge2025.tech.
-                        My responsibilities included backend integration, frontend UI/UX, and deployment.
-                        TechForge 2025 successfully highlighted emerging technologies and developer talent nationwide.
-</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Front-End Developer</span>
-                            <span class="project-tag">Tech Head</span>
-                            <span class="project-tag">WEBSITE</span>
+                <div class="projects-visual">
+                    <div class="cyber-card">
+                        <div class="card-header">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>Project Access</span>
                         </div>
-                        <div class="project-links">
-                            <!-- <a href="https://github.com/ei-sanu/cybershield" class="project-link"><i class="fas fa-code"></i> Source Code</a> -->
-                            <a href="https://www.techforge2025.tech/" class="project-link"><i class="fas fa-external-link-alt"></i> Live Server</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-card upcoming">
-                    <div class="project-image">
-                        <img src="images/project3.png" alt="Weather App" />
-                        <div class="project-status">
-                            <span class="status-badge">In Development</span>
-                        </div>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">WeatherSync Pro</h3>
-                        <p class="project-desc">A modern weather application built with React that provides real-time weather updates,
-                        forecasting, and integrated news feed. Features include interactive weather maps, severe weather alerts,
-                        customizable dashboard, and curated news related to climate and local events. The app uses advanced APIs
-                        for accurate weather data and news aggregation.</p>
-                        <div class="project-tags">
-                            <span class="project-tag">React Dev</span>
-                            <span class="project-tag">Real Time </span>
-                            <span class="project-tag">Weather</span>
-                            <span class="project-tag">News</span>
-                        </div>
-                        <div class="project-features">
-                            <div class="feature-item">
-                                <i class="fas fa-cloud"></i>
-                                <span>Real-time Weather</span>
+                        <div class="card-content">
+                            <div class="access-level">
+                                <!-- <span class="level-badge">Premium</span> -->
+                                <span class="level-text">Full Access to View Only</span>
                             </div>
-                            <div class="feature-item">
-                                <i class="fas fa-newspaper"></i>
-                                <span>News Integration</span>
+                            <div class="feature-grid">
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Source Code</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Documentation</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Live Demos</span>
+                                </div>
+                                <div class="feature-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>Updates</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="progress-section">
-                            <div class="progress-bar">
-                                <div class="progress" style="width: 75%"></div>
-                            </div>
-                            <span class="progress-text">75% Complete</span>
                         </div>
                     </div>
                 </div>

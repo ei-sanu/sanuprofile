@@ -665,6 +665,40 @@ header {
     box-shadow: 0 0 15px var(--neon-purple);
 }
 
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
+    border: none;
+    padding: 0.7rem 1.2rem;
+    /* Reduced horizontal padding */
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    width: fit-content;
+    /* Make width fit content */
+    min-width: min-content;
+    /* Ensure minimum width based on content */
+    white-space: nowrap;
+    /* Prevent text wrapping */
+}
+
+.cta-button i {
+    font-size: 0.8rem;
+    margin-left: 0.2rem;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+}
+
 /* About Section */
 .section {
     padding: 6rem 1rem;
@@ -1031,6 +1065,17 @@ header {
     color: var(--neon-blue);
 }
 
+.feature-item .fa-tachometer-alt,
+.feature-item .fa-gamepad,
+.feature-item .fa-stream {
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.project-card:hover .project-features .feature-item i {
+    animation: pulse 1.5s infinite;
+}
+
 .progress-section {
     margin-top: 2rem;
     text-align: center;
@@ -1060,6 +1105,119 @@ header {
     font-size: 0.9rem;
     display: block;
     text-align: center;
+}
+
+.projects-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.cyber-heading {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--neon-blue);
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    text-shadow: 0 0 10px var(--neon-blue);
+}
+
+.feature-list {
+    list-style: none;
+    margin: 2rem 0;
+}
+
+.feature-list li {
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: #fff;
+}
+
+.feature-list li i {
+    color: var(--neon-blue);
+}
+
+.cta-button {
+    background: linear-gradient(45deg, var(--neon-blue), var(--neon-pink));
+    border: none;
+    padding: 1rem 2rem;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+}
+
+.cta-note {
+    margin-top: 1rem;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.cyber-card {
+    background: rgba(0, 0, 0, 0.8);
+    border: 1px solid var(--neon-blue);
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--neon-blue);
+    font-family: 'Orbitron', sans-serif;
+    margin-bottom: 1.5rem;
+}
+
+.access-level {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.level-badge {
+    background: var(--neon-pink);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+}
+
+.feature-item i {
+    color: var(--neon-blue);
+}
+
+@media (max-width: 768px) {
+    .projects-content {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* Contact Section */
@@ -2384,4 +2542,26 @@ footer {
     .matrix-characters {
         opacity: 0.15;
     }
+}
+
+/* Fade In Down Animation */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.animated {
+    animation-duration: 0.3s;
+    animation-fill-mode: both;
+}
+
+.fadeInDown {
+    animation-name: fadeInDown;
 }
