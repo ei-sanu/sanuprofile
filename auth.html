@@ -69,6 +69,17 @@
         </div>
     </div>
 
+    <div id="verifyLoader" class="verify-loader">
+        <div class="verify-content">
+            <div class="cyber-circle">
+                <div class="circle-ring"></div>
+                <div class="circle-ring"></div>
+                <div class="circle-ring"></div>
+            </div>
+            <div class="verify-message">Authenticating Access</div>
+        </div>
+    </div>
+
     <div class="modal" id="termsModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -239,29 +250,41 @@
         const email = document.getElementById('loginEmail').value;
         const password = document.getElementById('loginPassword').value;
 
+        // Show loader
+        document.getElementById('verifyLoader').style.display = 'block';
+
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log('User logged in successfully:', user);
-                // Animated success alert
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Login Successful!',
-                    text: 'Welcome back!',
-                    showConfirmButton: false,
-                    timer: 1500,
-                    background: '#1a1a1a',
-                    color: '#fff',
-                    customClass: {
-                        popup: 'animated fadeInDown'
-                    }
-                }).then(() => {
-                    window.location.href = 'projects.html';
-                });
+
+                // Hide loader after 1.5 seconds to show the animation
+                setTimeout(() => {
+                    document.getElementById('verifyLoader').style.display = 'none';
+                    // Updated Cyberpunk themed success alert
+                    Swal.fire({
+                        icon: 'success',
+                        title: '<span class="cyber-alert-title">Access Granted</span>',
+                        html: '<div class="cyber-alert-text">Identity Verified<div class="cyber-alert-dots">...</div></div>',
+                        showConfirmButton: false,
+                        timer: 2000,
+                        background: 'linear-gradient(45deg, #1a1a1a, #2a2a2a)',
+                        color: '#fff',
+                        customClass: {
+                            popup: 'cyber-alert-popup',
+                            title: 'cyber-alert-title',
+                            icon: 'cyber-alert-icon'
+                        }
+                    }).then(() => {
+                        window.location.href = 'projects.html';
+                    });
+                }, 1500);
             })
             .catch((error) => {
+                // Hide loader
+                document.getElementById('verifyLoader').style.display = 'none';
                 console.error('Login error:', error);
-                // Animated error alert
+                // Show error alert
                 Swal.fire({
                     icon: 'error',
                     title: 'Login Failed',
