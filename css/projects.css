@@ -93,3 +93,8 @@
         padding: 1rem;
     }
 }
+
+.status-badge.success {
+    background: linear-gradient(45deg, #00ff88, #00ffcc);
+    color: #000;
+}
