@@ -397,3 +397,37 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 });
+
+document.addEventListener('DOMContentLoaded', function () {
+    const container = document.querySelector('.about-image');
+    const image = container.querySelector('img');
+
+    container.addEventListener('mousemove', (e) => {
+        if (!container.classList.contains('animate')) {
+            container.classList.add('animate');
+        }
+
+        const { left, top, width, height } = container.getBoundingClientRect();
+        const x = (e.clientX - left) / width - 0.5;
+        const y = (e.clientY - top) / height - 0.5;
+
+        const maxRotate = 10; // Reduce rotation amount
+        const xRotation = y * maxRotate;
+        const yRotation = x * -maxRotate;
+
+        image.style.transform = `
+            scale(1.02)
+            rotateX(${xRotation}deg)
+            rotateY(${yRotation}deg)
+            translateZ(20px)
+        `;
+    });
+
+    container.addEventListener('mouseleave', () => {
+        image.style.transform = 'translateZ(0)';
+        // Remove animate class after transition
+        setTimeout(() => {
+            container.classList.remove('animate');
+        }, 300);
+    });
+});
