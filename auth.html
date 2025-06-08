@@ -80,6 +80,17 @@
         </div>
     </div>
 
+    <div id="registerLoader" class="verify-loader">
+        <div class="verify-content">
+            <div class="cyber-circle">
+                <div class="circle-ring"></div>
+                <div class="circle-ring"></div>
+                <div class="circle-ring"></div>
+            </div>
+            <div class="verify-message">Creating Secure Account</div>
+        </div>
+    </div>
+
     <div class="modal" id="termsModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -205,6 +216,12 @@
     // Registration handler
     registerForm.addEventListener('submit', (e) => {
         e.preventDefault();
+
+        // Disable the register button and show loader
+        const registerBtn = document.getElementById('registerBtn');
+        registerBtn.disabled = true;
+        document.getElementById('registerLoader').style.display = 'block';
+
         const email = document.getElementById('regEmail').value;
         const password = document.getElementById('regPassword').value;
 
@@ -212,7 +229,11 @@
             .then((userCredential) => {
                 const user = userCredential.user;
                 console.log('User registered successfully:', user);
-                // Animated success alert
+
+                // Hide loader after successful registration
+                document.getElementById('registerLoader').style.display = 'none';
+
+                // Show success alert
                 Swal.fire({
                     icon: 'success',
                     title: 'Registration Successful!',
@@ -230,7 +251,12 @@
             })
             .catch((error) => {
                 console.error('Registration error:', error);
-                // Animated error alert
+
+                // Hide loader and re-enable button on error
+                document.getElementById('registerLoader').style.display = 'none';
+                registerBtn.disabled = false;
+
+                // Show error alert
                 Swal.fire({
                     icon: 'error',
                     title: 'Registration Failed',

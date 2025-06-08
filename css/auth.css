@@ -581,8 +581,8 @@ button[type="submit"]:disabled:hover {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.9);
-    z-index: 9999;
-    backdrop-filter: blur(8px);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
 }
 
 .verify-content {
@@ -595,51 +595,67 @@ button[type="submit"]:disabled:hover {
 
 .cyber-circle {
     position: relative;
-    width: 220px;
-    height: 220px;
-    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 20px;
 }
 
 .circle-ring {
     position: absolute;
-    top: 50%;
-    left: 50%;
+    width: 100%;
+    height: 100%;
     border: 2px solid transparent;
+    border-top-color: #0ff;
     border-radius: 50%;
-    animation: spinRing 1s linear infinite;
-}
-
-.circle-ring:nth-child(1) {
-    width: 200px;
-    height: 200px;
-    margin: -100px 0 0 -100px;
-    border-top-color: var(--neon-blue);
+    animation: spin 1s linear infinite;
 }
 
 .circle-ring:nth-child(2) {
-    width: 160px;
-    height: 160px;
-    margin: -80px 0 0 -80px;
-    border-top-color: var(--neon-pink);
-    animation-delay: 0.2s;
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+    animation-duration: 0.8s;
+    border-top-color: #0af;
 }
 
 .circle-ring:nth-child(3) {
-    width: 120px;
-    height: 120px;
-    margin: -60px 0 0 -60px;
-    border-top-color: #00ff00;
-    animation-delay: 0.4s;
+    width: 60%;
+    height: 60%;
+    top: 20%;
+    left: 20%;
+    animation-duration: 0.6s;
+    border-top-color: #08f;
 }
 
 .verify-message {
-    margin-top: 30px;
-    color: #fff;
-    font-family: 'Orbitron', sans-serif;
+    color: #0ff;
+    font-family: 'Share Tech Mono', monospace;
     font-size: 1.2rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    animation: glitch 2s infinite;
+    text-shadow: 0 0 10px #0ff;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
 }
 
 @keyframes scan {
