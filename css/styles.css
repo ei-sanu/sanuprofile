@@ -202,6 +202,44 @@ header {
     gap: 20px;
 }
 
+.github-star-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: rgba(0, 255, 255, 0.1);
+    border: 1px solid #0ff;
+    border-radius: 4px;
+    color: #0ff;
+    text-decoration: none;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    margin-right: 20px;
+}
+
+.github-star-btn:hover {
+    background: rgba(0, 255, 255, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.github-star-btn i {
+    font-size: 16px;
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+    .github-star-btn span {
+        display: none;
+    }
+
+    .github-star-btn {
+        padding: 8px;
+        margin-right: 15px;
+    }
+}
+
 .profile-icon {
     color: #00ff00;
     font-size: 24px;
