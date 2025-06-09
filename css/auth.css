@@ -819,3 +819,59 @@ button[type="submit"]:disabled:hover {
         transform: rotate(360deg);
     }
 }
+
+/* Social Login Styles */
+.social-login {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.divider {
+    position: relative;
+    margin: 20px 0;
+    text-align: center;
+}
+
+.divider span {
+    background: #1a1a1a;
+    padding: 0 10px;
+    color: #0ff;
+    font-size: 14px;
+}
+
+.divider:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #0ff;
+    z-index: -1;
+}
+
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px;
+    background: #1a1a1a;
+    border: 2px solid #0ff;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Share Tech Mono', monospace;
+    transition: all 0.3s ease;
+    margin: 0 auto;
+}
+
+.google-btn:hover {
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.google-btn img {
+    width: 20px;
+    height: 20px;
+}

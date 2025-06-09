@@ -61,6 +61,16 @@
                 <button type="submit" id="loginBtn" disabled>Login <i class="fas fa-arrow-right"></i></button>
             </form>
 
+            <div class="social-login">
+                <div class="divider">
+                    <span>Or continue with</span>
+                </div>
+                <button id="googleSignIn" class="google-btn">
+                    <img src="https://www.google.com/favicon.ico" alt="Google">
+                    Sign in with Google
+                </button>
+            </div>
+
             <div class="toggle-form">
                 <button type="button" class="toggle-btn" onclick="toggleForms()">
                     Switch to Register
@@ -156,6 +166,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword }
     from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
+    import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
 
     // Your Firebase configuration
     const firebaseConfig = {
@@ -171,6 +182,7 @@
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const auth = getAuth();
+    const provider = new GoogleAuthProvider();
 
     // Make toggleForms function globally available
     window.toggleForms = function() {
@@ -320,6 +332,48 @@
                     customClass: {
                         popup: 'animated shake'
                     }
+                });
+            });
+    });
+
+    // Google Sign-In handler
+    document.getElementById('googleSignIn').addEventListener('click', () => {
+        document.getElementById('verifyLoader').style.display = 'block';
+
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                const user = result.user;
+                // Store user data in localStorage
+                localStorage.setItem('userProfile', JSON.stringify({
+                    displayName: user.displayName,
+                    email: user.email,
+                    photoURL: user.photoURL
+                }));
+
+                // Show success message
+                Swal.fire({
+                    icon: 'success',
+                    title: '<span class="cyber-alert-title">Google Auth Successful</span>',
+                    html: `<div class="cyber-alert-text">Welcome ${user.displayName}</div>`,
+                    showConfirmButton: false,
+                    timer: 2000,
+                    background: 'linear-gradient(45deg, #1a1a1a, #2a2a2a)',
+                    color: '#fff',
+                    customClass: {
+                        popup: 'cyber-alert-popup'
+                    }
+                }).then(() => {
+                    window.location.href = 'projects.html';
+                });
+            })
+            .catch((error) => {
+                document.getElementById('verifyLoader').style.display = 'none';
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Authentication Failed',
+                    text: error.message,
+                    background: '#1a1a1a',
+                    color: '#fff'
                 });
             });
     });
