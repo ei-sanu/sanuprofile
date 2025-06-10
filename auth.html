@@ -65,7 +65,13 @@
                 <div class="divider">
                     <span>Or continue with</span>
                 </div>
-                <button id="googleSignIn" class="google-btn">
+                <div class="terms-checkbox">
+                    <input type="checkbox" id="googleTermsCheckbox" required>
+                    <label for="googleTermsCheckbox">
+                        I agree to the <span class="terms-link" onclick="showTerms()">Terms & Conditions</span>
+                    </label>
+                </div>
+                <button id="googleSignIn" class="google-btn" disabled>
                     <img src="https://www.google.com/favicon.ico" alt="Google">
                     Sign in with Google
                 </button>
@@ -225,6 +231,16 @@
         }
     });
 
+    document.getElementById('googleTermsCheckbox').addEventListener('change', function() {
+        const googleBtn = document.getElementById('googleSignIn');
+        googleBtn.disabled = !this.checked;
+        if (this.checked) {
+            googleBtn.classList.add('active');
+        } else {
+            googleBtn.classList.remove('active');
+        }
+    });
+
     // Registration handler
     registerForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -337,7 +353,18 @@
     });
 
     // Google Sign-In handler
-    document.getElementById('googleSignIn').addEventListener('click', () => {
+    document.getElementById('googleSignIn').addEventListener('click', (e) => {
+        if (e.currentTarget.disabled) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Terms & Conditions Required',
+                text: 'Please accept the terms and conditions to continue',
+                background: '#1a1a1a',
+                color: '#fff'
+            });
+            return;
+        }
+
         document.getElementById('verifyLoader').style.display = 'block';
 
         signInWithPopup(auth, provider)
@@ -353,7 +380,7 @@
                 // Show success message
                 Swal.fire({
                     icon: 'success',
-                    title: '<span class="cyber-alert-title">Google Auth Successful</span>',
+                    title: '<span class="cyber-alert-title">Auth Successful</span>',
                     html: `<div class="cyber-alert-text">Welcome ${user.displayName}</div>`,
                     showConfirmButton: false,
                     timer: 2000,

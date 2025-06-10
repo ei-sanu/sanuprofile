@@ -864,9 +864,17 @@ button[type="submit"]:disabled:hover {
     font-family: 'Share Tech Mono', monospace;
     transition: all 0.3s ease;
     margin: 0 auto;
+    opacity: 0.6;
+    cursor: not-allowed;
+    transition: all 0.3s ease;
 }
 
-.google-btn:hover {
+.google-btn.active {
+    opacity: 1;
+    cursor: pointer;
+}
+
+.google-btn.active:hover {
     background: rgba(0, 255, 255, 0.1);
     box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
 }
