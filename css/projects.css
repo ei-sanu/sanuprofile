@@ -196,6 +196,17 @@
     opacity: 0.8;
 }
 
+.profile-joined {
+    font-size: 0.9em;
+    color: #888;
+    margin-top: 5px;
+}
+
+.profile-joined i {
+    margin-right: 5px;
+    color: #666;
+}
+
 .sign-out-btn {
     width: 100%;
     padding: 10px;

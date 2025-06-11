@@ -51,6 +51,10 @@
                 <div class="profile-info">
                     <h3 id="userName" class="profile-name"></h3>
                     <p id="userEmail" class="profile-email"></p>
+                    <p class="profile-joined">
+                        <i class="fas fa-calendar-alt"></i>
+                        Joined <span id="joinedDate"></span>
+                    </p>
                 </div>
             </div>
             <button id="signOut" class="sign-out-btn">
@@ -566,7 +570,6 @@
 
     <script src="js/script.js"></script>
     <script type="module">
-        // Add this after your Firebase initialization
         document.addEventListener('DOMContentLoaded', () => {
             const userProfile = JSON.parse(localStorage.getItem('userProfile'));
 
@@ -574,6 +577,15 @@
                 document.getElementById('userPhoto').src = userProfile.photoURL || 'path/to/default-avatar.png';
                 document.getElementById('userName').textContent = userProfile.displayName;
                 document.getElementById('userEmail').textContent = userProfile.email;
+
+                // Format and display joined date
+                const joinedDate = userProfile.metadata?.creationTime || new Date().toISOString();
+                const formattedDate = new Date(joinedDate).toLocaleDateString('en-US', {
+                    month: 'long',
+                    day: 'numeric',
+                    year: 'numeric'
+                });
+                document.getElementById('joinedDate').textContent = formattedDate;
             } else {
                 window.location.href = 'auth.html';
             }
