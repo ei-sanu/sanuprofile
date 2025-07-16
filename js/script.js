@@ -396,6 +396,105 @@ document.addEventListener('DOMContentLoaded', function () {
             alert('Please fill in all fields');
         }
     }
+
+    // CV Modal Functions
+    document.addEventListener('DOMContentLoaded', () => {
+        // Get modal elements
+        const cvModal = document.getElementById('cvModal');
+        const securityModal = document.getElementById('securityModal');
+        const cvClose = document.querySelector('.cv-close');
+
+        // Show CV Preview
+        window.showCVPreview = function (event) {
+            event.preventDefault();
+            if (cvModal) {
+                cvModal.style.display = 'block';
+            }
+        };
+
+        // Show Security Prompt
+        window.showSecurityPrompt = function () {
+            if (securityModal) {
+                securityModal.style.display = 'block';
+            }
+        };
+
+        // Close Security Modal
+        window.closeSecurityModal = function () {
+            if (securityModal) {
+                securityModal.style.display = 'none';
+            }
+        };
+
+        // Validate Security Code
+        window.validateSecurityCode = function () {
+            const code = document.getElementById('securityCode').value;
+            if (code === '2511') {
+                Swal.fire({
+                    title: 'Download CV?',
+                    text: 'Are you sure you want to download the CV?',
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes',
+                    cancelButtonText: 'No',
+                    background: '#1a1a1a',
+                    confirmButtonColor: '#00ff9d'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const link = document.createElement('a');
+                        link.href = 'assets/someshformatedcv.pdf';
+                        link.download = 'Somesh_CV.pdf';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    }
+                });
+                closeSecurityModal();
+            } else {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Invalid security code',
+                    icon: 'error',
+                    background: '#1a1a1a',
+                    confirmButtonColor: '#00ff9d'
+                });
+            }
+            document.getElementById('securityCode').value = '';
+        };
+
+        // Close modals when clicking X or outside
+        if (cvClose) {
+            cvClose.onclick = function () {
+                cvModal.style.display = 'none';
+            };
+        }
+
+        window.onclick = function (event) {
+            if (event.target === cvModal) {
+                cvModal.style.display = 'none';
+            }
+            if (event.target === securityModal) {
+                securityModal.style.display = 'none';
+            }
+        };
+    });
+
+    // Add this to your existing script
+    function handlePDFError() {
+        const iframe = document.querySelector('.cv-preview iframe');
+        iframe.onerror = () => {
+            iframe.style.display = 'none';
+            document.querySelector('.cv-preview').innerHTML = `
+                <div class="pdf-error">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Error loading PDF. Please try again later.</p>
+                </div>
+            `;
+        };
+    }
+
+    // Call this function after DOM loads
+    document.addEventListener('DOMContentLoaded', handlePDFError);
 });
 
 document.addEventListener('DOMContentLoaded', function () {
