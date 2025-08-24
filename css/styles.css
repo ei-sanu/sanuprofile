@@ -252,6 +252,106 @@ header {
     font-size: 16px;
 }
 
+/* Coffee Link Styles */
+.coffee-link {
+    background: linear-gradient(45deg, #ffdd00, #faa307);
+    padding: 8px 16px;
+    border-radius: 24px;
+    color: #000 !important;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.coffee-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(250, 163, 7, 0.3);
+}
+
+.coffee-text {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+}
+
+.coffee-link i {
+    font-size: 16px;
+}
+
+.coffee-section {
+    background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+    padding: 4rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.coffee-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+}
+
+.coffee-text-content h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.coffee-text-content p {
+    color: #888;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.coffee-button {
+    background: linear-gradient(45deg, #ffdd00, #faa307);
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    color: #000;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+}
+
+.coffee-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(250, 163, 7, 0.3);
+}
+
+.coffee-button i {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .coffee-section {
+        padding: 3rem 0;
+    }
+
+    .coffee-text-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .coffee-text-content p {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .coffee-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
 /* Responsive styles */
 @media screen and (max-width: 768px) {
     .github-star-btn span {
@@ -698,7 +798,6 @@ header {
     text-transform: uppercase;
     letter-spacing: 1px;
     z-index: 1;
-    border-radius: 4px;
 }
 
 .btn::before {
